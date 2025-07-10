@@ -4,7 +4,7 @@ language = "fa"
 # یک پنجره می‌سازیم
 window = tk.Tk()
 window.title("برنامه ساده من")
-window.geometry("300x200")
+window.geometry("500x300")
 
 # لیبل (برچسب)
 label = tk.Label(window, text="سلام!", font=("Arial", 14))
@@ -16,6 +16,8 @@ def change_text():
         label.config(text="شما روی دکمه کلیک کردید!")
     elif language == "en":
         label.config(text="You clicked the button!")
+    elif language == "de":
+        label.config(text="Sie haben auf die Schaltfläche geklickt!")
 
 # دکمه
 button = tk.Button(window, text="کلیک کن", command=change_text)
@@ -31,6 +33,16 @@ def en():
 #زبان
 buttonen = tk.Button(window, text="english", command=en)
 buttonen.pack()
+
+def de():
+    global language
+    language = "de"
+    label.config(text="Hallo!")
+    button.config(text="Klicken")
+    window.title("Mein einfaches Programm")
+
+buttonde = tk.Button(window, text="deutsch", command=de)
+buttonde.pack()
 
 # اجرای پنجره
 window.mainloop()
