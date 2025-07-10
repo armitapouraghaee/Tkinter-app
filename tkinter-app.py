@@ -1,11 +1,8 @@
 import tkinter as tk
 
-
-
-# ساخت پنجره
 window = tk.Tk()
-window.title("برنامه ساده من")
 window.geometry("500x300")
+window.title("برنامه ساده من")
 
 language = "fa"
 
@@ -38,21 +35,26 @@ def change_text():
     elif language == "de":
         label.config(text="Sie haben auf die Schaltfläche geklickt!")
 
-buttonfa = tk.Button(window, text="farsi", command=fa)
-buttonen = tk.Button(window, text="english", command=en)
-buttonde = tk.Button(window, text="deutsch", command=de)
+# ساخت فریم برای دکمه‌ها
+frame_buttons = tk.Frame(window)
+frame_buttons.grid(row=0, column=0, sticky='w', padx=5, pady=5)
 
-buttonfa.grid(row=0, column=0, padx=5, pady=5)
-buttonen.grid(row=0, column=1, padx=5, pady=5)
-buttonde.grid(row=0, column=2, padx=5, pady=5)
+buttonfa = tk.Button(frame_buttons, text="farsi", command=fa)
+buttonen = tk.Button(frame_buttons, text="english", command=en)
+buttonde = tk.Button(frame_buttons, text="deutsch", command=de)
+
+# دکمه‌ها را داخل فریم افقی بچین (با pack و side=LEFT)
+buttonfa.pack(side='left')
+buttonen.pack(side='left')
+buttonde.pack(side='left')
 
 label = tk.Label(window, text="سلام!", font=("Arial", 14))
-label.grid(row=1, column=0, columnspan=3, pady=20)
+label.grid(row=1, column=0, pady=20)
 
 button = tk.Button(window, text="کلیک کن", command=change_text)
-button.grid(row=2, column=0, columnspan=3)
+button.grid(row=2, column=0)
 
-for i in range(3):
-    window.grid_columnconfigure(i, weight=1)
+# ستون 0 وزن بده که بقیه وسط بمونن
+window.grid_columnconfigure(0, weight=1)
 
 window.mainloop()
